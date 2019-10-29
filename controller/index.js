@@ -1,0 +1,1 @@
+exports.IndexController = require('./controllerIndex');
