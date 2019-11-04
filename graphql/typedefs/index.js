@@ -7,9 +7,15 @@ const typedefs = gql`
         content: String
         ctime: String
     }
+    type User {
+        id: Int
+        name: String
+    }
     type Query {
         list: [BookingItem]
+        user: [User]
     }
+
 `;
 
 module.exports = typedefs;

@@ -5,8 +5,11 @@ fetch(
             query: `{
                 list {
                     id
-                    content
                     ctime
+                }
+                user {
+                    id
+                    name
                 }
             }`
         }),

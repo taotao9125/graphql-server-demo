@@ -26,9 +26,14 @@ const path = require('path');
 const fs = require('fs');
 const resolvers = {
     Query: {
-        list: async () => {
+        list: () => {
             //const list = await getList();
             const list = fs.readFileSync( path.join(__dirname, '../data.json'));
+            return JSON.parse(list);
+        },
+        user: () => {
+            //const list = await getList();
+            const list = fs.readFileSync( path.join(__dirname, '../data2.json'));
             return JSON.parse(list);
         }
     }
