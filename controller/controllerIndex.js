@@ -1,7 +1,6 @@
 
 const IndexController = function(req, res) {
-    
-    res.render('index', { title: 'graphql22' });
+    res.render('index', { title: '' });
 };
 
 module.exports = IndexController;

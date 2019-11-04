@@ -6,10 +6,22 @@ var logger = require('morgan');
 var router = require('./routes/index');
 var apis = require('./apis/index');
 
-var graphqlHttp = require('express-graphql');
+//var graphqlHttp = require('express-graphql');
 
+var { ApolloServer } = require('apollo-server-express');
+var gqlTypeDefs = require('./graphql/typedefs/index');
+var gqlResovers = require('./graphql/resolvers/index');
+
+
+var gqlServer = new ApolloServer({
+  cors: false,
+  typeDefs: gqlTypeDefs,
+  resolvers: gqlResovers
+});
 
 var app = express();
+
+gqlServer.applyMiddleware({app});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,14 +33,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// app.use(
-//   '/graphql',
-//   graphqlHTTP({
-//     schema: MyGraphQLSchema,
-//     graphiql: true,
-//   }),
-// );
 
 app.use('/', router);
 app.use('/api', apis);

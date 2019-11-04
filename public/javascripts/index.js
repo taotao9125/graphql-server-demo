@@ -1,7 +1,22 @@
-fetch('/api/users')
-.then((res) => {
-    return res.json()
-})
-.then((res) => {
-    console.log(res);
+fetch(
+    '/graphql',
+    {
+        body: JSON.stringify({
+            query: `{
+                list {
+                    id
+                    content
+                    ctime
+                }
+            }`
+        }),
+        headers: {
+            'content-type': 'application/json',
+        },
+        'method': 'POST'
+    }
+)
+.then(async function(res){
+    var ret = await res.json();
+    console.log(ret);
 })

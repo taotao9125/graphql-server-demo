@@ -11,8 +11,9 @@ select * from hotel_otaroom_booking limit 0, 1000;
 router.get('/users', function(req, res){
     cn.connect();
     cn.query(query, function(error, ret, field) {
-       
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.json({
             status: 10000,
             errmsg: '',
@@ -21,7 +22,6 @@ router.get('/users', function(req, res){
             }
         });
         //cn.release();
-        
     });
    
 });
